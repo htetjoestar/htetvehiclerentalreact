@@ -1,0 +1,90 @@
+/* Reset some default styles */
+
+  .login-container {
+    padding: 0;
+    width: 20%;
+    height: 500px;
+    background-color: #ccc; /* grey */
+    margin: auto;
+    margin-top: 50px;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .register-container {
+    padding: 0;
+    width: 20%;
+    height: 750px;
+    background-color: #ccc; /* grey */
+    margin: auto;
+    margin-top: 50px;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Center vertically and horizontally */
+  .login-button {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .form-input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #999;
+  }
+  .login-button:hover {
+    background-color: #444;
+  }
+  
+  input {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-top: 10px;
+  }
+  
+  .bottom-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .home-button,
+  .register-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .home-button:hover,
+  .register-button:hover {
+    background-color: #666;
+  }
+
+  p.error {
+    color: red;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 14px;
+  }

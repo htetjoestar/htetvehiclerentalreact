@@ -1,0 +1,63 @@
+.employee-form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    border: 2px solid #0077cc;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 119, 204, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .employee-form-container h2 {
+    text-align: center;
+    color: #0077cc;
+    margin-bottom: 20px;
+  }
+  
+  .employee-form label {
+    display: block;
+    margin-bottom: 15px;
+    color: black;
+    font-weight: 500;
+  }
+  
+  .employee-form input[type="text"],
+  .employee-form input[type="password"],
+  .employee-form input[type="date"],
+  .employee-form input[type="email"] {
+    width: 100%;
+    padding: 8px 12px;
+    margin-top: 5px;
+    border: 1px solid #0077cc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .employee-form input:focus {
+    border-color: #005fa3;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 119, 204, 0.3);
+  }
+  
+  .employee-form .checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .employee-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .employee-form button:hover {
+    background-color: #005fa3;
+  }
