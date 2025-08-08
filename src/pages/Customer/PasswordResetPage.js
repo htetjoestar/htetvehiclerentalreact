@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { handleInputChange } from "../../formUtils";
 
 const PasswordResetPage = () => {
   const [searchParams] = useSearchParams();
@@ -20,10 +21,8 @@ const PasswordResetPage = () => {
     }
   }, [token]);
 
-  const handleChange = (field) => (e) => {
-    setPasswords({ ...passwords, [field]: e.target.value });
-  };
 
+  const handleChange = handleInputChange(setPasswords);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("");
@@ -62,9 +61,10 @@ const PasswordResetPage = () => {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
           <input
+            name="newPassword"
             type="password"
             value={passwords.newPassword}
-            onChange={handleChange("newPassword")}
+            onChange={handleChange}
             placeholder="Enter new password"
             className="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -73,9 +73,10 @@ const PasswordResetPage = () => {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
           <input
+            name="confirmPassword"
             type="password"
             value={passwords.confirmPassword}
-            onChange={handleChange("confirmPassword")}
+            onChange={handleChange}
             placeholder="Confirm new password"
             className="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />

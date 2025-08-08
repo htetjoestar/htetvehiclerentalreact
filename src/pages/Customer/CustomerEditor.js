@@ -4,6 +4,7 @@ import PhoneInput from 'react-phone-input-2';
 import axios from 'axios';
 import 'react-phone-input-2/lib/style.css'
 import './CustomerRegistration.css'
+import { handleInputChange } from '../../formUtils.js';
 const CustomerEditor = () => {
     const { id } = useParams();
     const [imageFile, setImageFile] = useState(null);
@@ -42,14 +43,7 @@ const CustomerEditor = () => {
     confirmNewPassword: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setCustomer({
-      ...customer,
-      [name]: type === 'checkbox' ? checked : value
-    });
-  };
-
+  const handleChange = handleInputChange(setCustomer);
   const handlePhoneChange = (value) => {
     setCustomer({
       ...customer,
@@ -62,6 +56,7 @@ const CustomerEditor = () => {
       ['cust_emergency_contact_number']: value
     });
   };
+  
   const handlePasswordChange = (e) => {
     const { name, value } = e.target;
     setPasswords({

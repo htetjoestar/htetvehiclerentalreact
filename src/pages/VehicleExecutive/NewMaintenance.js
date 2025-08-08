@@ -3,6 +3,7 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import Admin from '../Admin';
 import axios from 'axios';
 import AdminHeader from '../Components/AdminHeader';
+import { handleInputChange } from '../../formUtils';
 
 const NewMaintenance = () => {
   const nav = useNavigate();
@@ -19,68 +20,62 @@ const NewMaintenance = () => {
   });
   console.log("Vehicle ID:", id);
 
-    useEffect(() => {
+  useEffect(() => {
     axios.get("http://localhost:8080/api/vehicle/"+id)
       .then(response => setVehicle(response.data))
       .catch(error => console.error("Error fetching employees:", error));
-    }, []);
+  }, []);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setMaintenance({
-      ...maintenance,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+  const handleChange = handleInputChange(setMaintenance);
 
   const handleClick = async (e) => {
 
-    setError("");
-    const now = new Date();
-    if (!maintenance.start_date || !maintenance.end_date) {
-      setError('Please select both pickup and drop-off dates.');
-      return;
-    }
+      setError("");
+      const now = new Date();
+      if (!maintenance.start_date || !maintenance.end_date) {
+        setError('Please select both pickup and drop-off dates.');
+        return;
+      }
 
-    if (new Date(maintenance.start_date) < now || new Date(maintenance.end_date) < now) {
-      setError('Please select dates from tomorrow onwards.');
-      return;
-    }
+      if (new Date(maintenance.start_date) < now || new Date(maintenance.end_date) < now) {
+        setError('Please select dates from tomorrow onwards.');
+        return;
+      }
 
-    if (new Date(maintenance.start_date) > new Date(maintenance.end_date)) {
-      setError('End date must be after start date.');
-      return;
-    }
-    
-    const payload = {
-        ...maintenance,
-        
-    }
-    e.preventDefault();
-    await axios.post('http://localhost:8080/api/maintenance', payload)
-      .then(response => {
-       console.log("Vehicle updated", response.data);
-     })
-    .catch(error => {
-      console.error("Error updating vehicle:", error);
-    });
-    const vehiclepayload = {
-      ...vehicle,
-      vehicle_status: "Maintenance",
-      veh_modified_date: now,
-      veh_deactivated_date: null,
-      veh_last_action: "Updated"
-    };
+      if (new Date(maintenance.start_date) > new Date(maintenance.end_date)) {
+        setError('End date must be after start date.');
+        return;
+      }
+      
+      const payload = {
+          ...maintenance,
+          
+      }
+      e.preventDefault();
+      await axios.post('http://localhost:8080/api/maintenance', payload)
+        .then(response => {
+        console.log("Vehicle updated", response.data);
+      })
+      .catch(error => {
+        console.error("Error updating vehicle:", error);
+      });
+      const vehiclepayload = {
+        ...vehicle,
+        vehicle_status: "Maintenance",
+        veh_modified_date: now,
+        veh_deactivated_date: null,
+        veh_last_action: "Updated"
+      };
 
-    await fetch(`http://localhost:8080/api/vehicle/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(vehiclepayload)
-    }).then(() => {
-      console.log("Vehicle updated");
-    });
-    nav("/managemaintenance");
-    };
+      await fetch(`http://localhost:8080/api/vehicle/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(vehiclepayload)
+      }).then(() => {
+        console.log("Vehicle updated");
+      });
+      nav("/managemaintenance");
+  };
 
   return (
     <div>

@@ -3,6 +3,7 @@ import React, { useState,useEffect } from 'react'
 import visaLogo from "../../visa_logo.png";
 import mastercardLogo from "../../mastercard_logo2.png";
 import amexLogo from "../../amex.png";
+import { handleInputChange } from '../../formUtils';
 
 const ManagePaymentMethods = () => {
     const name = localStorage.getItem("customerName");
@@ -15,7 +16,7 @@ const ManagePaymentMethods = () => {
     const [cardToDelete, setCardToDelete] = useState(null);
     const [newPaymentMethod, setNewPaymentMethod] = React.useState({
         customer: customerId,
-        card_umber: '',
+        card_number: '',
         card_expiry_date: '',
         expiry_month:0,
         card_cvv: '',
@@ -45,10 +46,7 @@ const ManagePaymentMethods = () => {
         return null;
         };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setNewPaymentMethod({ ...newPaymentMethod, [name]: value });
-    }
+    const handleChange = handleInputChange(setNewPaymentMethod);
     
     const isValidCardNumber = (number) => {
         const digits = number.replace(/\D/g, '').split('').reverse().map(Number);

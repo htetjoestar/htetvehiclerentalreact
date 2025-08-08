@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import AdminHeader from '../Components/AdminHeader';
+import { handleInputChange } from '../../formUtils';
 
 const ReviewReservation = () => {
   const nav = useNavigate();
@@ -73,20 +74,8 @@ const ReviewReservation = () => {
 
 
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setReservation({
-      ...reservation,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
-  const handleInvoiceChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setInvoice({
-      ...invoice,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+  const handleChange = handleInputChange(setReservation);
+  const handleInvoiceChange = handleInputChange(setInvoice);
 
 
 

@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import { Await, useNavigate } from "react-router-dom";
 import website_logo from "../../website_logo_sm.png";
 import axios from "axios";
-
+import { handleInputChange } from '../../formUtils.js';
 const LoginPage = () => {
     const navigate = useNavigate();
     const[Id ,setId]=useState([])
@@ -12,14 +12,8 @@ const LoginPage = () => {
       email: '',
       password:'',
     })
+    const handleChange = handleInputChange(setState);
 
-    const handleChange = (input) => e =>{
-        const updated={
-          ...state,
-          [input]:e.target.value
-        }
-        setState(updated);
-    };  
     const handleClick = async (e) => {
     e.preventDefault();
 
@@ -70,19 +64,21 @@ const LoginPage = () => {
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
       <input
+       name="email" 
         className="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="text"
         placeholder="email"
-        onChange={handleChange('email')}
+        onChange={handleChange}
       />
     </div>
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
       <input
+      name="password" 
         className="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="password"
         placeholder="password"
-        onChange={handleChange('password')}
+        onChange={handleChange}
       />
     </div>
     

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { handleInputChange } from "../../formUtils";
 
 const RequestPasswordPage = () => {
   const navigate = useNavigate();
@@ -8,9 +9,7 @@ const RequestPasswordPage = () => {
   const [loading,setLoading] =useState(false);
   const [status, setStatus] = useState("");
 
-  const handleChange = (field) => (e) => {
-    setForm({ ...form, [field]: e.target.value });
-  };
+  const handleChange = handleInputChange(setForm);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,20 +44,22 @@ const RequestPasswordPage = () => {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
           <input
+          name="email"
             type="text"
             placeholder="Your email"
             value={form.email}
-            onChange={handleChange("email")}
+            onChange={handleChange}
             className="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
           <input
+          name="lastName"
             type="text"
             placeholder="Your last name"
             value={form.lastName}
-            onChange={handleChange("lastName")}
+            onChange={handleChange}
             className="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>

@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import { Await, useNavigate } from "react-router-dom";
 import '../Customer/LoginPage.css'
+import { handleInputChange } from "../../formUtils";
 
 const PortalAdminLoginPage = () => {
     const navigate = useNavigate();
@@ -13,15 +14,7 @@ const PortalAdminLoginPage = () => {
       password:'',
     })
 
-    
-
-    const handleChange = (input) => e =>{
-        const updated={
-          ...state,
-          [input]:e.target.value
-        }
-        setState(updated);
-    };  
+   const handleChange = handleInputChange(setState);
 
     const handleClick2=(e)=>{
 
@@ -60,19 +53,21 @@ const PortalAdminLoginPage = () => {
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
       <input
+        name="email"
         className="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="text"
         placeholder="email"
-        onChange={handleChange('email')}
+        onChange={handleChange}
       />
     </div>
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
       <input
+        name="password"
         className="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="password"
         placeholder="password"
-        onChange={handleChange('password')}
+        onChange={handleChange}
       />
     </div>
     <div className="text-center text-sm text-red-500 h-5">

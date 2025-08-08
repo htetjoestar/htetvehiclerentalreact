@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import AdminHeader from '../Components/AdminHeader';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { handleInputChange } from '../../formUtils';
 
 function AdminUpload() {
     const navigate = useNavigate();
@@ -22,10 +23,7 @@ function AdminUpload() {
     });
 
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
+    const handleChange = handleInputChange(setForm);
     const uploadImage = (e) => {
         const file = e.target.files[0];
         setImageFile(file);

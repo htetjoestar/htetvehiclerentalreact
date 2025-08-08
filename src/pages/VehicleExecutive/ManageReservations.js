@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './employee.css'
 import AdminHeader from "../Components/AdminHeader";
-
+import { handleInputChange } from '../../formUtils';
 const ManageReservations = () => {
   const now = new Date();
   const [reservations, setReservations] = useState([]);
@@ -76,13 +76,8 @@ useEffect(() => {
     const date = new Date(year, month - 1, day);
     return date.toLocaleDateString();
   }
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFilters({
-      ...filters,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+
+  const handleChange = handleInputChange(setFilters);
 
 const handleClick = (e) => {
   e.preventDefault();

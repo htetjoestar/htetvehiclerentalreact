@@ -3,6 +3,7 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import ManageMaintenance from './ManageMaintenance';
 import axios from 'axios';
 import AdminHeader from '../Components/AdminHeader';
+import { handleInputChange } from '../../formUtils';
 
 
 const EditMaintenanceDetails = () => {
@@ -32,13 +33,7 @@ const EditMaintenanceDetails = () => {
     
   }, [maintenance]);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setMaintenance({
-      ...maintenance,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+  const handleChange = handleInputChange(setMaintenance);
 
   const handleClick = (e) => {
 

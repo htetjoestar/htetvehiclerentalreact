@@ -3,6 +3,7 @@ import axios from 'axios';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
 import { useNavigate } from 'react-router-dom';
+import { handleInputChange } from '../../formUtils';
 
 const CustomerRegistration = () => {
   const navigate = useNavigate();
@@ -79,10 +80,7 @@ const CustomerRegistration = () => {
   return true;
 };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  const handleChange = handleInputChange(setFormData);
 
   const nextStep = () => {
     if (validateStep()) {
