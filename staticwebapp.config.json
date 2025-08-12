@@ -2,11 +2,13 @@
   "routes": [
     {
       "route": "/admin-login",
-      "serve": "/index.html"
+      "serve": "/",
+      "statusCode": 200
     },
     {
       "route": "/portal-admin-login",
-      "serve": "/index.html"
+      "serve": "/",
+      "statusCode": 200
     }
   ]
 }
