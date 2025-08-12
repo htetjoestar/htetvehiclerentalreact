@@ -54,8 +54,8 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<CustomerRegistration />} />
         <Route path="/customer-login" element={<LoginPage />} />
-        <Route path="/admin-login" element={<AdminLoginPage />} />
-        <Route path="/portal-admin-login" element={<PortalAdminLoginPage />} />
+        <Route path="admin-login" element={<AdminLoginPage />} />
+        <Route path="portal-admin-login" element={<PortalAdminLoginPage />} />
         <Route path="/request-password" element={<RequestPasswordPage />} />
          <Route path="/verify" element={<VerifyEmail />} /> 
          <Route path="/reset-password" element={<PasswordResetPage />} />
