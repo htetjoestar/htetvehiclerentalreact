@@ -23,7 +23,7 @@ const QuickReserve = () => {
 
     const total = (vehicle.base_charge_per_day * diffDays) + (baby_seat*100) + insuranceAmount;        
     useEffect(() => {
-    axios.get("http://localhost:8080/api/vehicle/"+reservation.vehicle)
+    axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/"+reservation.vehicle)
       .then(response => setVehicle(response.data))
       .catch(error => console.error("Error fetching employees:", error));
     }, []);

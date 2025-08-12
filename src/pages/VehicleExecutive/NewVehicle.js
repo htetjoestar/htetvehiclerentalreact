@@ -24,6 +24,7 @@ function AdminUpload() {
 
 
     const handleChange = handleInputChange(setForm);
+    
     const uploadImage = (e) => {
         const file = e.target.files[0];
         setImageFile(file);

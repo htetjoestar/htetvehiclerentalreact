@@ -20,7 +20,7 @@ const PortalAdminLoginPage = () => {
 
         e.preventDefault()
         
-        fetch("http://localhost:8080/api/employee/portal-admin-login",{
+        fetch("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/portal-admin-login",{
           method:"POST",
           headers:{"Content-Type":"application/json"},
           body:JSON.stringify(state)

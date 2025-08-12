@@ -12,13 +12,14 @@ const LoginPage = () => {
       email: '',
       password:'',
     })
+    
     const handleChange = handleInputChange(setState);
 
     const handleClick = async (e) => {
     e.preventDefault();
 
     try {
-        const response = await axios.post("http://localhost:8080/api/customer/login", state, {
+        const response = await axios.post("http://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/login", state, {
             headers: { "Content-Type": "application/json" }
         });
 
@@ -74,7 +75,7 @@ const LoginPage = () => {
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
       <input
-      name="password" 
+        name="password" 
         className="form-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="password"
         placeholder="password"

@@ -8,7 +8,7 @@ const BarChart = ({ year, month, goal = 10 }) => {
   useEffect(() => {
     if (year && month) {
       axios
-        .post("http://localhost:8080/api/reservation/created-per-day", { year, month })
+        .post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/created-per-day", { year, month })
         .then((response) => setData(response.data))
         .catch((error) => console.error("Error fetching data:", error));
     }

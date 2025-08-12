@@ -21,7 +21,7 @@ const NewMaintenance = () => {
   console.log("Vehicle ID:", id);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/vehicle/"+id)
+    axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/"+id)
       .then(response => setVehicle(response.data))
       .catch(error => console.error("Error fetching employees:", error));
   }, []);
@@ -52,7 +52,7 @@ const NewMaintenance = () => {
           
       }
       e.preventDefault();
-      await axios.post('http://localhost:8080/api/maintenance', payload)
+      await axios.post('https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/maintenance', payload)
         .then(response => {
         console.log("Vehicle updated", response.data);
       })
@@ -67,7 +67,7 @@ const NewMaintenance = () => {
         veh_last_action: "Updated"
       };
 
-      await fetch(`http://localhost:8080/api/vehicle/${id}`, {
+      await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(vehiclepayload)
@@ -101,7 +101,7 @@ const NewMaintenance = () => {
       <div key={vehicle.vehicle_id} className="border border-gray-300 rounded-lg p-4 w-[300px] mt-5 shadow-sm bg-white">
         {vehicle.image_url ? (
           <img
-            src={'http://localhost:8080' + vehicle.image_url}
+            src={'https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net' + vehicle.image_url}
             alt="vehicle"
             className="w-full h-40 object-cover rounded mb-2"
           />

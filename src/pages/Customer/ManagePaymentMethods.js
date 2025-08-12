@@ -23,7 +23,7 @@ const ManagePaymentMethods = () => {
         card_postal_code: ''
     });
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/payment/customer/${customerId}`)
+        axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/payment/customer/${customerId}`)
         .then((response) => {
             setPaymentMethods(response.data);
         }).catch((error) => {
@@ -94,7 +94,7 @@ const ManagePaymentMethods = () => {
           }
 
   
-        axios.post(`http://localhost:8080/api/payment`, newPaymentMethod)
+        axios.post(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/payment`, newPaymentMethod)
         .then((response) => {
             setPaymentMethods([...paymentMethods, response.data]);
             setNewPaymentMethod({
@@ -114,7 +114,7 @@ const ManagePaymentMethods = () => {
       const confirmed = window.confirm("Are you sure you want to delete this payment method?");
       if (!confirmed) return;
 
-      axios.delete(`http://localhost:8080/api/payment/${id}`)
+      axios.delete(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/payment/${id}`)
         .then(() => {
           setPaymentMethods((prev) => prev.filter((method) => method.id !== id));
         })
@@ -285,7 +285,7 @@ const ManagePaymentMethods = () => {
         <button
           onClick={() => {
             axios
-              .delete(`http://localhost:8080/api/payment/${cardToDelete}`)
+              .delete(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/payment/${cardToDelete}`)
               .then(() => {
                 setPaymentMethods((prev) =>
                   prev.filter((method) => method.payment_id !== cardToDelete)

@@ -15,7 +15,7 @@ const EditMaintenanceDetails = () => {
   const [maintenance, setMaintenance] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/maintenance/${id}`)
+    axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/maintenance/${id}`)
     .then(response => {
       setMaintenance(response.data);
       console.log("Fetched vehicle:", response.data);
@@ -27,7 +27,7 @@ const EditMaintenanceDetails = () => {
   }, [id]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/vehicle/"+maintenance.vehicle)
+    axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/"+maintenance.vehicle)
       .then(response => setVehicle(response.data))
       .catch(error => console.error("Error fetching employees:", error));
     
@@ -57,7 +57,7 @@ const EditMaintenanceDetails = () => {
         ...maintenance
     }
     e.preventDefault();
-    fetch(`http://localhost:8080/api/maintenance/${id}`, {
+    fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/maintenance/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -91,7 +91,7 @@ const EditMaintenanceDetails = () => {
       <div key={vehicle.vehicle_id} className="border border-gray-300 rounded-lg p-4 mt-5 w-[300px] shadow-sm bg-white">
         {vehicle.image_url ? (
           <img
-            src={'http://localhost:8080' + vehicle.image_url}
+            src={'https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net' + vehicle.image_url}
             alt="vehicle"
             className="w-full h-40 object-cover rounded mb-2"
           />

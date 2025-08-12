@@ -11,7 +11,7 @@ const EditVehicleDetails = () => {
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/vehicle/${id}`)
+    fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/${id}`)
       .then(res => res.json())
       .then(result => {
         setVehicle(result);
@@ -37,7 +37,7 @@ const EditVehicleDetails = () => {
       veh_last_action: "Updated"
     };
 
-    fetch(`http://localhost:8080/api/vehicle/${id}`, {
+    fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -57,7 +57,7 @@ const EditVehicleDetails = () => {
     formData.append("image", file);
 
     try {
-      const response = await fetch(`http://localhost:8080/api/vehicle/${id}/upload-image`, {
+      const response = await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/${id}/upload-image`, {
         method: "POST",
         body: formData,
       });

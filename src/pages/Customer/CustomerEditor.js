@@ -44,12 +44,14 @@ const CustomerEditor = () => {
   });
 
   const handleChange = handleInputChange(setCustomer);
+
   const handlePhoneChange = (value) => {
     setCustomer({
       ...customer,
       ['cust_phone_number']: value
     });
   };
+  
   const handleEmergencyPhoneChange = (value) => {
     setCustomer({
       ...customer,
@@ -88,7 +90,7 @@ const CustomerEditor = () => {
         emp_last_action: "Updated"
     }
         try {
-            const response = await axios.put('http://localhost:8080/api/customer/'+id, payload, {
+            const response = await axios.put('https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/'+id, payload, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -99,7 +101,7 @@ const CustomerEditor = () => {
             imageformData.append("image", imageFile);
 
             try {
-            const response2 = await fetch(`http://localhost:8080/api/customer/${response.data.customer_id}/upload-image`, {
+            const response2 = await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/${response.data.customer_id}/upload-image`, {
             method: "POST",
             body: imageformData,
             });
@@ -122,7 +124,7 @@ const CustomerEditor = () => {
   };
 
     useEffect(() => {
-      fetch(`http://localhost:8080/api/customer/${id}`)
+      fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/${id}`)
         .then(res => res.json())
         .then(result => setCustomer(result)).then(() => {
           console.log("Fetched employee:", customer);

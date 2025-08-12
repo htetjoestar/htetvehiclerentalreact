@@ -11,7 +11,7 @@ const Home = () => {
     const [vehicles, setVehicles] = useState([]);
 
       useEffect(() => {
-      axios.get("http://localhost:8080/api/vehicle/random", {
+      axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/random", {
       })
         .then(response => setVehicles(response.data))
         .catch(error => console.error("Error fetching vehicles:", error));

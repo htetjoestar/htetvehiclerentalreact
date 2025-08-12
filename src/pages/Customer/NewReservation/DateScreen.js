@@ -19,7 +19,7 @@ const DateScreen = () => {
     const [selectedType, setSelectedTypes] = useState("Sedan");
 
       useEffect(() => {
-      axios.get('http://localhost:8080/api/vehicle/available/'+selectedType, {
+      axios.get('https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/available/'+selectedType, {
       })
         .then(response => setVehicles(response.data))
         .catch(error => console.error("Error fetching vehicles:", error));

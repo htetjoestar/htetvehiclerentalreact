@@ -22,7 +22,7 @@ const ReviewReservation = () => {
   useEffect(() => {
       const fetchInvoice = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/invoice/reservation/${id}`);
+        const response = await axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/invoice/reservation/${id}`);
         if (response.status === 200) {
           setInvoiceExists(true);
         }
@@ -31,21 +31,21 @@ const ReviewReservation = () => {
         console.error("Error fetching invoice data:", error);
       }
     };
-    axios.get(`http://localhost:8080/api/reservation/${id}`)
+    axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/${id}`)
     .then(response => {
       setReservation(response.data);
       console.log(response.data.res_status);
       setStatus(response.data.res_status);
 
 
-      const vehicleRes = axios.get(`http://localhost:8080/api/vehicle/${response.data.vehicle}`);
+      const vehicleRes = axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/${response.data.vehicle}`);
         vehicleRes.then(vehicleResponse => {
             setVehicle(vehicleResponse.data);
             console.log("Fetched vehicle:", vehicleResponse.data);
         });
 
 
-       const customerRes = axios.get(`http://localhost:8080/api/customer/${response.data.customer}`);
+       const customerRes = axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/${response.data.customer}`);
         customerRes.then(customerRes => {
             setCustomer(customerRes.data);
         });  
@@ -125,7 +125,7 @@ const ReviewReservation = () => {
   };
 
   try {
-    await fetch(`http://localhost:8080/api/reservation/${id}`, {
+    await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -136,7 +136,7 @@ const ReviewReservation = () => {
     console.error("Update failed:", err);
   }
       // Reload updated reservation
-    const res = await axios.get(`http://localhost:8080/api/reservation/${id}`);
+    const res = await axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/${id}`);
     setReservation(res.data);
     setStatus(res.data.res_status);
 };
@@ -160,19 +160,19 @@ const ReviewReservation = () => {
   };
 
   try {
-    await fetch(`http://localhost:8080/api/reservation/${id}`, {
+    await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-    const response = await axios.post(`http://localhost:8080/api/invoice`, {
+    const response = await axios.post(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/invoice`, {
       reservation: id,
       vehicle: reservation.vehicle,
       damageDescription: invoice.damageDescription,
       invoice_created_date: now,
     });
     // Reload updated reservation
-    const res = await axios.get(`http://localhost:8080/api/reservation/${id}`);
+    const res = await axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/${id}`);
     setReservation(res.data);
     setStatus(res.data.res_status);
     window.location.reload();
@@ -193,7 +193,7 @@ const ReviewReservation = () => {
       <div key={vehicle.vehicle_id} className="border border-gray-300 rounded-lg p-4 w-[300px] shadow-sm bg-white">
         {vehicle.image_url ? (
           <img
-            src={'http://localhost:8080' + vehicle.image_url}
+            src={'https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net' + vehicle.image_url}
             alt="vehicle"
             className="w-full h-40 object-cover rounded mb-2"
           />

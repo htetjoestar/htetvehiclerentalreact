@@ -18,21 +18,21 @@ const CustomerReviewInvoice = () => {
   const [invoiceExists, setInvoiceExists] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/reservation/${id}`)
+    axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/${id}`)
     .then(response => {
       setReservation(response.data);
       console.log(response.data.res_status);
       setStatus(response.data.res_status);
 
 
-      const vehicleRes = axios.get(`http://localhost:8080/api/vehicle/${response.data.vehicle}`);
+      const vehicleRes = axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/${response.data.vehicle}`);
         vehicleRes.then(vehicleResponse => {
             setVehicle(vehicleResponse.data);
             console.log("Fetched vehicle:", vehicleResponse.data);
         });
 
 
-       const customerRes = axios.get(`http://localhost:8080/api/customer/${response.data.customer}`);
+       const customerRes = axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/${response.data.customer}`);
         customerRes.then(customerRes => {
             setCustomer(customerRes.data);
         });  
@@ -53,7 +53,7 @@ const CustomerReviewInvoice = () => {
       console.error("Error fetching maintenance data:", error);
     });
 
-     axios.get(`http://localhost:8080/api/invoice/reservation/${id}`)
+     axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/invoice/reservation/${id}`)
     .then(response => {
       if (response.data && response.data.invoice_id) {
         setInvoiceExists(true);
@@ -63,15 +63,6 @@ const CustomerReviewInvoice = () => {
     });
   }, [id]);
 
-
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setReservation({
-      ...reservation,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
   const handleInvoiceChange = (e) => {
     const { name, value, type, checked } = e.target;
     setInvoice({
@@ -81,53 +72,13 @@ const CustomerReviewInvoice = () => {
   };
 
 
-
- const handleStepSubmit = async (e) => {
-  e.preventDefault();
-  const now = new Date().toISOString();
-
-  let updatedFields = {
-    res_modified_date: now,
-    res_last_action: "Updated"
-  };
-
-  if (reservation.res_status === 'Reserved') {
-    updatedFields.actual_pick_up_date = reservation.actual_pick_up_date;
-    updatedFields.res_status = 'Rented';
-  } else if (reservation.res_status === 'Rented') {
-    updatedFields.actual_drop_off_date = reservation.actual_drop_off_date;
-    updatedFields.res_status = 'Completed';
-  }
-
-  const payload = {
-    ...reservation,
-    ...updatedFields
-  };
-
-  try {
-    await fetch(`http://localhost:8080/api/reservation/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
-    // Reload updated reservation
-    const res = await axios.get(`http://localhost:8080/api/reservation/${id}`);
-    setReservation(res.data);
-    setStatus(res.data.res_status);
-  } catch (err) {
-    console.error("Update failed:", err);
-  }
-};
-
-
  const handleInvoice = async (e) => {
   e.preventDefault();
   const now = new Date().toISOString();
 
   try {
 
-    const response = await axios.get(`http://localhost:8080/api/reservation/pdf/${id}`,{
+    const response = await axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/pdf/${id}`,{
       responseType: 'blob'
     });
     const blob = new Blob([response.data], { type: 'application/pdf' });
@@ -156,7 +107,7 @@ const CustomerReviewInvoice = () => {
       <div key={vehicle.vehicle_id} className="border border-gray-300 rounded-lg p-4 w-[300px] shadow-sm bg-white">
         {vehicle.image_url ? (
           <img
-            src={'http://localhost:8080' + vehicle.image_url}
+            src={'https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net' + vehicle.image_url}
             alt="vehicle"
             className="w-full h-40 object-cover rounded mb-2"
           />

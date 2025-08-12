@@ -30,7 +30,7 @@ const EmployeeEditor = () => {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/employee/${id}`)
+    fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/${id}`)
       .then(res => res.json())
       .then(result => setEmployee(result));
   }, [id]);
@@ -75,7 +75,7 @@ const EmployeeEditor = () => {
       emp_last_action: "Updated"
     };
 
-    await fetch(`http://localhost:8080/api/employee/${id}`, {
+    await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -98,7 +98,7 @@ const EmployeeEditor = () => {
       newPassword: passwords.newPassword
     };
 
-    await fetch('http://localhost:8080/api/employee/change-password', {
+    await fetch('https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/change-password', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)

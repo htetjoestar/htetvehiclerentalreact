@@ -17,7 +17,7 @@ const RequestPasswordPage = () => {
     setStatus("");
 
     try {
-      await axios.post("http://localhost:8080/api/customer/request-password-reset", null, {
+      await axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/request-password-reset", null, {
         params: {
           email: form.email,
           lastName: form.lastName

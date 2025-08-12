@@ -21,7 +21,7 @@ const pageSize = 10;
     const sortParam = sortField ? `${sortField},${sortOrder}` : "";
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/reservation/nextweek?page=${page}&size=10${sortParam ? `&sort=${sortParam}` : ""}`,
+        `https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/nextweek?page=${page}&size=10${sortParam ? `&sort=${sortParam}` : ""}`,
         filters
       );
       setReservations(response.data.content);
@@ -32,7 +32,7 @@ const pageSize = 10;
   };
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/employee/"+id)
+    axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/"+id)
       .then(response => setEmployee(response.data))
       .catch(error => console.error("Error fetching employees:", error));
     }, []);

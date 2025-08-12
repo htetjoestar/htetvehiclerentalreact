@@ -48,7 +48,7 @@ export default function EmployeeForm() {
     };
 
     try {
-      const res = await axios.post("http://localhost:8080/api/employee", payload);
+      const res = await axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee", payload);
       alert("Employee created successfully!");
       setForm({
         emp_first_name: "",

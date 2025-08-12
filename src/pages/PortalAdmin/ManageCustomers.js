@@ -22,7 +22,7 @@ const ManageCustomers = () => {
 
   try {
     const response = await axios.post(
-      `http://localhost:8080/api/customer/filter?page=${page}&size=${pageSize}${sortParam ? `&sort=${sortParam}` : ""}`,
+      `https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/filter?page=${page}&size=${pageSize}${sortParam ? `&sort=${sortParam}` : ""}`,
       filters
     );
     setReservations(response.data.content);
@@ -52,6 +52,7 @@ const ManageCustomers = () => {
     // Reset to page 0 and refetch
     setPage(0);
   };
+  
   function formatLocalDate(dateStr) {
     if(dateStr == null){
       return;
@@ -94,7 +95,7 @@ const ManageCustomers = () => {
 
 
     try {
-      const response = await axios.post('http://localhost:8080/api/customer/filter', filters);
+      const response = await axios.post('https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/filter', filters);
       setReservations(response.data.content);
       console.log("Filtered vehicles:", response.data.content);
     } catch (error) {

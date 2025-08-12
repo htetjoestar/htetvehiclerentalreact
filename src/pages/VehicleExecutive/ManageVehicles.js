@@ -22,7 +22,7 @@ const fetchVehicles = async (filters, page) => {
 
   try {
     const response = await axios.post(
-      `http://localhost:8080/api/vehicle/adminfilter?page=${page}&size=${pageSize}${sortParam ? `&sort=${sortParam}` : ""}`,
+      `https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/adminfilter?page=${page}&size=${pageSize}${sortParam ? `&sort=${sortParam}` : ""}`,
       filters
     );
     setVehicles(response.data.content);
@@ -198,7 +198,7 @@ const fetchVehicles = async (filters, page) => {
           <td>
             {veh.image_url ? (
               <img
-                src={'http://localhost:8080' + veh.image_url}
+                src={'https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net' + veh.image_url}
                 alt="Vehicle"
                 className="w-20 rounded"
               />

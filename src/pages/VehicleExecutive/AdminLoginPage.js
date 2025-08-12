@@ -15,11 +15,12 @@ const AdminLoginPage = () => {
     })
 
     const handleChange = handleInputChange(setState);
+    
     const handleClick2=(e)=>{
 
         e.preventDefault()
         
-        fetch("http://localhost:8080/api/employee/login",{
+        fetch("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/login",{
           method:"POST",
           headers:{"Content-Type":"application/json"},
           body:JSON.stringify(state)
@@ -41,9 +42,6 @@ const AdminLoginPage = () => {
         
       } 
 
-    const handleRegister =(e)=>{
-        navigate("/Register")
-    }
     return (
 <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
   <div className="bg-white p-8 rounded shadow-md w-full max-w-sm space-y-4">

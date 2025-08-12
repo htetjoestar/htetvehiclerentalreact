@@ -24,7 +24,7 @@ const ManageEmployees = () => {
 
   try {
     const response = await axios.post(
-      `http://localhost:8080/api/employee/filter?page=${page}&size=${pageSize}${sortParam ? `&sort=${sortParam}` : ""}`,
+      `https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/filter?page=${page}&size=${pageSize}${sortParam ? `&sort=${sortParam}` : ""}`,
       filters
     );
     setReservations(response.data.content);
@@ -109,7 +109,7 @@ const ManageEmployees = () => {
 
     try {
       
-      const response = await axios.post('http://localhost:8080/api/employee/filter', filters);
+      const response = await axios.post('https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/filter', filters);
       setReservations(response.data.content);
       console.log("Filtered vehicles:", response.data.content);
     } catch (error) {

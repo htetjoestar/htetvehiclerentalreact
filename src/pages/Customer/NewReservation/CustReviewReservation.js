@@ -16,21 +16,21 @@ const CustReviewReservation = () => {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/reservation/${id}`)
+    axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/${id}`)
     .then(response => {
       setReservation(response.data);
       console.log("Fetched reservation:", response.data.vehicle);
 
 
 
-      const vehicleRes = axios.get(`http://localhost:8080/api/vehicle/${response.data.vehicle}`);
+      const vehicleRes = axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/${response.data.vehicle}`);
         vehicleRes.then(vehicleResponse => {
             setVehicle(vehicleResponse.data);
             console.log("Fetched vehicle:", vehicleResponse.data);
         });
 
 
-       const customerRes = axios.get(`http://localhost:8080/api/customer/${response.data.customer}`);
+       const customerRes = axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/${response.data.customer}`);
         customerRes.then(customerRes => {
             setCustomer(customerRes.data);
         });  
@@ -47,7 +47,7 @@ const CustReviewReservation = () => {
 
   try {
 
-    const response = await axios.get(`http://localhost:8080/api/reservation/pdf/${id}`,{
+    const response = await axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/pdf/${id}`,{
       responseType: 'blob'
     });
     const blob = new Blob([response.data], { type: 'application/pdf' });
@@ -85,7 +85,7 @@ const CustReviewReservation = () => {
         res_last_action: "Cancelled"
     }
     e.preventDefault();
-    await fetch(`http://localhost:8080/api/reservation/${id}`, {
+    await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)

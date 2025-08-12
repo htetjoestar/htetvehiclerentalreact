@@ -24,7 +24,7 @@ const pageSize = 10;
     const sortParam = sortField ? `${sortField},${sortOrder}` : "";
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/reservation/filter?page=${page}&size=10${sortParam ? `&sort=${sortParam}` : ""}`,
+        `https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/filter?page=${page}&size=10${sortParam ? `&sort=${sortParam}` : ""}`,
         filters
       );
       setReservations(response.data.content);
@@ -98,7 +98,7 @@ const handleClick2 = async (e) => {
   e.preventDefault();
   try {
     const response = await axios.get(
-      'http://localhost:8080/api/reservation/report/monthly',
+      'https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/report/monthly',
       {
         params: filters,
         responseType: 'blob', // This is key for downloading files

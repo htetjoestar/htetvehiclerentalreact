@@ -69,17 +69,17 @@ const InvoicePayment = () => {
     };
 
     useEffect(() => {
-     axios.get(`http://localhost:8080/api/invoice/reservation/${id}`)
+     axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/invoice/reservation/${id}`)
     .then(response => {
       setInvoice(response.data);
-            axios.get(`http://localhost:8080/api/reservation/${id}`)
+            axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/${id}`)
     .then(response => {
       setReservation(response.data);
       console.log(response.data.res_status);
     })
     });
 
-    axios.get(`http://localhost:8080/api/payment/customer/${customerId}`)
+    axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/payment/customer/${customerId}`)
         .then((response) => {
       const cards = response.data || []; // fallback to empty array
       setExistingCards(cards);
@@ -126,7 +126,7 @@ const InvoicePayment = () => {
             setError("CVV must be 3 digits.");
             return;
         }
-        await axios.post(`http://localhost:8080/api/payment`, newPaymentMethod)
+        await axios.post(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/payment`, newPaymentMethod)
         .then((response) => {
             setNewPaymentMethod({
                 customer: customerId,
@@ -142,7 +142,7 @@ const InvoicePayment = () => {
             ...invoice,
             paid: true
         }
-        await axios.put(`http://localhost:8080/api/invoice/${invoice.invoice_id}`, invoiceData);
+        await axios.put(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/invoice/${invoice.invoice_id}`, invoiceData);
         navigate('/customer-review-invoice/'+ reservation.reservation_id);
     }
   const cardBrandLogos = {

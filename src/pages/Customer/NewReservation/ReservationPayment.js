@@ -74,11 +74,11 @@ const getCardBrand = (number) => {
       console.log(state?.reservation)
     setReservation(state.reservation);
   }
-  axios.get("http://localhost:8080/api/vehicle/" + reservation.vehicle)
+  axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/" + reservation.vehicle)
     .then(response => setVehicle(response.data))
     .catch(error => console.error("Error fetching vehicle:", error));
 
-  axios.get(`http://localhost:8080/api/payment/customer/${customerId}`)
+  axios.get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/payment/customer/${customerId}`)
     .then((response) => {
       const cards = response.data || []; // fallback to empty array
       setExistingCards(cards);
@@ -143,7 +143,7 @@ const getCardBrand = (number) => {
               setLoading(false); // ← add this
               return;
           }
-        axios.post(`http://localhost:8080/api/payment`, newPaymentMethod)
+        axios.post(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/payment`, newPaymentMethod)
         .then((response) => {
             setNewPaymentMethod({
                 customer: customerId,
@@ -155,7 +155,7 @@ const getCardBrand = (number) => {
             console.error("Error adding payment method:", error);
         });
     }
-    await fetch(`http://localhost:8080/api/reservation`, {
+    await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)

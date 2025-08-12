@@ -28,7 +28,7 @@ const NewLocation = () => {
         ...location, 
     }
     e.preventDefault();
-    fetch(`http://localhost:8080/api/location`, {
+    fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/location`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)

@@ -73,7 +73,7 @@ const PortalEditor = () => {
         emp_last_action: "Updated"
     }
     e.preventDefault();
-    await fetch(`http://localhost:8080/api/employee/${id}`, {
+    await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -84,7 +84,7 @@ const PortalEditor = () => {
   };
 
     useEffect(() => {
-      fetch(`http://localhost:8080/api/employee/${id}`)
+      fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/${id}`)
         .then(res => res.json())
         .then(result => setEmployee(result)).then(() => {
           console.log("Fetched employee:", employee);

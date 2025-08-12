@@ -18,7 +18,7 @@ const fetchMainteance = async (page) => {
   const sortParam = sortField ? `${sortField},${sortOrder}` : "";
   try {
     const response = await axios.post(
-      `http://localhost:8080/api/maintenance/status?${status ? `&status=${status}` : ""}?page=${page}&size=10${sortParam ? `&sort=${sortParam}` : ""}`
+      `https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/maintenance/status?${status ? `&status=${status}` : ""}?page=${page}&size=10${sortParam ? `&sort=${sortParam}` : ""}`
     );
     setMaintenance(response.data.content);
     setTotalPages(response.data.totalPages);

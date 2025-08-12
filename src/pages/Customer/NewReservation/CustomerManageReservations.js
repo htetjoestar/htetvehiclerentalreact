@@ -15,14 +15,14 @@ const CustomerManageReservations = () => {
   useEffect(() => {
     if (!customerId) return;
 
-    axios.post(`http://localhost:8080/api/reservation/status`, {
+    axios.post(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/status`, {
       customer_id: customerId,
       res_status: "Reserved"
     })
       .then(response => setReservations(response.data))
       .catch(error => console.error("Error fetching reservations:", error));
 
-    axios.post(`http://localhost:8080/api/reservation/status`, {
+    axios.post(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/status`, {
       customer_id: customerId,
       res_status: "Rented"
     })

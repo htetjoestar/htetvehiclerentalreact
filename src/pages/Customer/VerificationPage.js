@@ -9,7 +9,7 @@ export default function VerifyEmail() {
   useEffect(() => {
     const token = searchParams.get("token");
 axios
-  .get(`http://localhost:8080/api/customer/verify`, {
+  .get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/verify`, {
     params: { token }
   })
   .then(res => {

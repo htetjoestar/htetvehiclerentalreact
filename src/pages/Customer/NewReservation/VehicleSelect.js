@@ -33,7 +33,7 @@ const VehicleSelect = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.post("http://localhost:8080/api/vehicle/filter", {
+    axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/filter", {
     color: vehicleRequest.color || null,
     num_seats: vehicleRequest.num_seats ? parseInt(vehicleRequest.num_seats) : null,
     types: selectedTypes || null,
@@ -143,7 +143,7 @@ const handleSeats = (e) => {
 
     e.preventDefault();
     try {
-      const response = await     axios.post("http://localhost:8080/api/vehicle/filter", {
+      const response = await     axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/filter", {
         color: null,
         num_seats: null,
         types: null,
@@ -159,7 +159,7 @@ const handleSeats = (e) => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/vehicle/filter', {
+      const response = await axios.post('https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/filter', {
         color: vehicleRequest.color || null,
         num_seats: vehicleRequest.num_seats ? parseInt(vehicleRequest.num_seats) : null,
         types: selectedTypes || null,

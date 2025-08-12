@@ -31,13 +31,13 @@ function parseMonthString(monthString) {
   return { year, month };
 }
   useEffect(() => {
-  axios.post("http://localhost:8080/api/reservation/monthly/current", { year: 2025, month: 6 })
+  axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/monthly/current", { year: 2025, month: 6 })
     .then(response => setData(response.data))
     .catch(error => console.error("Error fetching employees:", error));
-  axios.get("http://localhost:8080/api/reservation/created-per-day")
+  axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/created-per-day")
     .then(response => setResData(response.data))
     .catch(error => console.error("Error fetching employees:", error));
-  axios.get("http://localhost:8080/api/reservation/months").then(res => {
+  axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/months").then(res => {
     const formattedMonths = res.data.map(entry => {
       const date = new Date(entry.year, entry.month - 1);
       return `${date.toLocaleString("default", { month: "long" })} ${entry.year}`;
@@ -48,7 +48,7 @@ function parseMonthString(monthString) {
     if (formattedMonths.includes(currentMonth)) {
       setSelectedMonth(currentMonth);
       const { year, month: monthNum } = parseMonthString(currentMonth);
-      axios.post("http://localhost:8080/api/reservation/monthly/current", {
+      axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/monthly/current", {
         year,
         month: monthNum
       }).then(response => setData(response.data))
@@ -71,7 +71,7 @@ const handleClick2 = async (e) => {
   e.preventDefault();
   try {
     const response = await axios.get(
-      'http://localhost:8080/api/reservation/report/monthly',
+      'https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/report/monthly',
       {
         params: filters,
         responseType: 'blob', // This is key for downloading files
@@ -119,7 +119,7 @@ function calculateChange(current, previous) {
               onClick={() => {
                 setSelectedMonth(month);
                 const { year, month: monthNum } = parseMonthString(month);
-                axios.post("http://localhost:8080/api/reservation/monthly/current", {
+                axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/monthly/current", {
                   year,
                   month: monthNum
                 }).then(response => setData(response.data))

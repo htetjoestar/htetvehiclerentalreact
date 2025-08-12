@@ -34,11 +34,11 @@ const [selectedImageUrl, setSelectedImageUrl] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-  axios.get("http://localhost:8080/api/customer/"+id)
+  axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/"+id)
     .then(response => setCustomer(response.data))
     .catch(error => console.error("Error fetching employees:", error));
   
-  axios.post("http://localhost:8080/api/reservation/customer/"+id)
+  axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/customer/"+id)
     .then(response => setReservations(response.data))
     .catch(error => console.error("Error fetching employees:", error));  
   }, []);
