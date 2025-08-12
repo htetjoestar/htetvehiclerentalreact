@@ -1,7 +1,12 @@
 {
   "routes": [
     {
-      "route": "/*",
+      "route": "/admin-login",
+      "serve": "/index.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/portal-admin-login",
       "serve": "/index.html",
       "statusCode": 200
     }
