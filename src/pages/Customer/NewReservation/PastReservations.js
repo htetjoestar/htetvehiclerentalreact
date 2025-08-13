@@ -14,7 +14,7 @@ const PastReservations = () => {
 
   const fetchReservations = async ( page) => {
 
-    const response = await axios.post(`http://localhost:8080/api/reservation/statuspage?page=${page}&size=10`, {
+    const response = await axios.post(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/reservation/statuspage?page=${page}&size=10`, {
       customer_id: customerId,
       res_status: status
     })  

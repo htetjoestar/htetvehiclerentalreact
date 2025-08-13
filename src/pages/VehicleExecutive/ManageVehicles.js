@@ -198,7 +198,7 @@ const fetchVehicles = async (filters, page) => {
           <td>
             {veh.image_url ? (
               <img
-                src={'https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net' + veh.image_url}
+                src={veh.image_url}
                 alt="Vehicle"
                 className="w-20 rounded"
               />

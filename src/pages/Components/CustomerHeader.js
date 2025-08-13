@@ -16,7 +16,7 @@ const CustomerHeader = () => {
   useEffect(() => {
     if (customerId) {
       axios
-        .get(`http://localhost:8080/api/invoice/has-unpaid?customerId=${customerId}`)
+        .get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/invoice/has-unpaid?customerId=${customerId}`)
         .then(res => setHasUnpaid(res.data))
         .catch(err => console.error("Failed to fetch unpaid status", err));
     }
@@ -24,7 +24,7 @@ const CustomerHeader = () => {
   useEffect (() => {
       // Optional: fetch notifications
       axios
-        .get(`http://localhost:8080/api/notifications?customerId=${customerId}`)
+        .get(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/notifications?customerId=${customerId}`)
         .then(res => setNotifications(res.data))
         .catch(err => console.error("Failed to fetch notifications", err));
 

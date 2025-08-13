@@ -112,7 +112,7 @@ const EditVehicleDetails = () => {
         vehicle.image_url && (
           <div className="mb-4">
             <img
-              src={'http://localhost:8080' +vehicle.image_url}
+              src={vehicle.image_url}
               alt="Vehicle"
               className="w-64 h-auto rounded border border-gray-300"
             />
