@@ -302,7 +302,7 @@ const handleSeats = (e) => {
 >
   {veh.image_url ? (
     <img
-      src={'http://localhost:8080' + veh.image_url}
+      src={veh.image_url}
       alt="Vehicle"
       className="w-full h-40 object-contain rounded mb-2"
     />

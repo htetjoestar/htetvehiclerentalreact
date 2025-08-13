@@ -67,7 +67,7 @@ return reservations.map((maint) => (
       <div className="col-span-1">
         {maint.image_url ? (
           <img
-            src={`http://localhost:8080${maint.image_url}`}
+            src={`${maint.image_url}`}
             alt="Vehicle"
             className="h-28 object-cover rounded mb-2"
           />

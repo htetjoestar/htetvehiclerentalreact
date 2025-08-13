@@ -64,7 +64,7 @@ const AdditionalFeatures = () => {
       <div key={vehicle.vehicle_id} className="border border-gray-300 rounded-lg p-4 w-[300px] shadow-sm bg-white">
         {vehicle.image_url ? (
           <img
-            src={'https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net' + vehicle.image_url}
+            src={vehicle.image_url}
             alt="vehicle"
             className="w-full h-40 object-cover rounded mb-2"
           />

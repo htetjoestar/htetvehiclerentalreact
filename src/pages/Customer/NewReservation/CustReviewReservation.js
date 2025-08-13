@@ -107,7 +107,7 @@ const CustReviewReservation = () => {
       <div key={vehicle.vehicle_id} className="border border-gray-300 rounded-lg p-4 w-[300px] shadow-sm bg-white">
         {vehicle.image_url ? (
           <img
-            src={'http://localhost:8080' + vehicle.image_url}
+            src={vehicle.image_url}
             alt="vehicle"
             className="w-full h-40 object-cover rounded mb-2"
           />

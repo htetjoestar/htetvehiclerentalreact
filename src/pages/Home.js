@@ -106,7 +106,7 @@ const scrollRight = () => {
 >
   {veh.image_url ? (
     <img
-      src={`http://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net${veh.image_url}`}
+      src={`${veh.image_url}`}
       alt="Vehicle"
       className="w-full h-40 object-contain rounded mb-2"
     />
