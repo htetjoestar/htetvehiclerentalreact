@@ -7,6 +7,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const[Id ,setId]=useState([])
     const[user ,setUser]=useState([])
+    const [loading, setLoading] = useState(false);
     const [loginError, setLoginError] = useState("");
     const [state, setState]= useState({
       email: '',
@@ -17,7 +18,7 @@ const LoginPage = () => {
 
     const handleClick = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
         const response = await axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/login", state, {
             headers: { "Content-Type": "application/json" }
@@ -35,9 +36,11 @@ const LoginPage = () => {
         if (error.response && error.response.status === 401) {
           console.log(error.response.data)
             setLoginError(error.response.data || "Unauthorized");
+
         } else {
           setLoginError("An unexpected error occurred. Please try again.");
         }
+        setLoading(false);
     }
     }
 
@@ -96,10 +99,13 @@ const LoginPage = () => {
     </div>
     
     <button
-      className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+      className={`w-full py-2 rounded transition ${
+        loading ? "bg-blue-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+      } text-white`}
       onClick={handleClick}
+      disabled={loading}
     >
-      Log in
+      {loading ? "Logging in..." : "Log in"}
     </button>
     <div className="flex justify-between space-x-2 mt-4">
       <button

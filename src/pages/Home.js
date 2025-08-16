@@ -6,63 +6,74 @@ import website_logo from "../website_logo.png";
 
 
 const Home = () => {
- const scrollRef = useRef(null);
-      const navigate = useNavigate();
-    const [vehicles, setVehicles] = useState([]);
+  const scrollRef = useRef(null);
+  const navigate = useNavigate();
+  const [vehicles, setVehicles] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
-      useEffect(() => {
-      axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/random", {
+  useEffect(() => {
+    setLoading(true); // start loading when fetching
+    axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/random", {
+    })
+      .then(response => {
+        setVehicles(response.data);
+        setLoading(false); // stop loading after success
       })
-        .then(response => setVehicles(response.data))
-        .catch(error => console.error("Error fetching vehicles:", error));
-      }, []);  
-const scrollLeft = () => {
-  const container = scrollRef.current;
-  if (!container) return;
+      .catch(err => {
+        console.error("Error fetching vehicles:", err);
+        setError("Failed to fetch vehicles.");
+        setLoading(false); // stop loading even if error
+      });
+  }, []);
 
-  // If at the start, jump to the end
-  if (container.scrollLeft <= 0) {
-    container.scrollTo({
-      left: container.scrollWidth,
-      behavior: 'smooth',
-    });
-  } else {
-    container.scrollBy({ left: -300, behavior: 'smooth' });
-  }
-};
+  const scrollLeft = () => {
+    const container = scrollRef.current;
+    if (!container) return;
 
-const scrollRight = () => {
-  const container = scrollRef.current;
-  if (!container) return;
+    // If at the start, jump to the end
+    if (container.scrollLeft <= 0) {
+      container.scrollTo({
+        left: container.scrollWidth,
+        behavior: 'smooth',
+      });
+    } else {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
 
-  // If at the end, jump to the start
-  const atEnd =
-    container.scrollLeft + container.offsetWidth >= container.scrollWidth - 5;
+  const scrollRight = () => {
+    const container = scrollRef.current;
+    if (!container) return;
 
-  if (atEnd) {
-    container.scrollTo({
-      left: 0,
-      behavior: 'smooth',
-    });
-  } else {
-    container.scrollBy({ left: 300, behavior: 'smooth' });
-  }
-};
+    // If at the end, jump to the start
+    const atEnd =
+      container.scrollLeft + container.offsetWidth >= container.scrollWidth - 5;
+
+    if (atEnd) {
+      container.scrollTo({
+        left: 0,
+        behavior: 'smooth',
+      });
+    } else {
+      container.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
   return (
     <div>
       <NewHeader />
 
       <div className=" bg-rental-hero2 bg-cover flex flex-col justify-center items-center">
 
-<div className="mt-4 ">
-  <img src={website_logo} alt="logo" className="h-56 object-contain ml-2" />
-  </div>
-<div className="text-center mb-8">
+      <div className="mt-4 ">
+        <img src={website_logo} alt="logo" className="h-56 object-contain ml-2" />
+        </div>
+      <div className="text-center mb-8">
 
-  <p className="text-md text-gray-500">
-    Login or register to make a reservation
-  </p>
-</div>
+        <p className="text-md text-gray-500">
+          Login or register to make a reservation
+        </p>
+      </div>
 
       <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 bg-green-100 mb-8 p-8 rounded shadow-md w-fit">
               <div className="flex space-x-4">
@@ -95,15 +106,31 @@ const scrollRight = () => {
     </h2>
   </div>
   {/* Scrollable Container */}
-  <div
-    ref={scrollRef}
-    className="flex overflow-x-auto bg-green-100 space-x-4 px-12 py-4 scroll-smooth snap-x snap-mandatory"
-  >
-    {vehicles.map((veh) => (
 <div
-  key={veh.vehicle_id}
-  className="flex-shrink-0 border border-gray-300 rounded-lg p-4 w-[300px] shadow-sm bg-white snap-start"
+  ref={scrollRef}
+  className="flex overflow-x-auto bg-gray-100 bg-opacity-50 space-x-4 px-12 py-4 scroll-smooth snap-x snap-mandatory min-h-[350px]"
 >
+  {loading ? (
+    <div className="flex space-x-4">
+      {/* Fake skeleton cards while loading */}
+      {[1, 2, 3].map((i) => (
+        <div
+          key={i}
+          className="flex-shrink-0 border border-gray-300 rounded-lg p-4 w-[280px] shadow-sm bg-white snap-start animate-pulse"
+        >
+          <div className="w-full h-40 bg-gray-200 rounded mb-2" />
+          <div className="h-4 bg-gray-200 rounded w-2/3 mb-2" />
+          <div className="h-3 bg-gray-200 rounded w-1/2 mb-4" />
+          <div className="h-6 bg-gray-200 rounded w-1/3" />
+        </div>
+      ))}
+    </div>
+  ) : (
+    vehicles.map((veh) => (
+      <div
+        key={veh.vehicle_id}
+        className="flex-shrink-0 border border-gray-300 rounded-lg p-4 w-[280px] shadow-sm bg-white snap-start"
+      >
   {veh.image_url ? (
     <img
       src={`${veh.image_url}`}
@@ -159,7 +186,8 @@ const scrollRight = () => {
     </div>
   </div>
 </div>
-    ))}
+    ))
+  )}
   </div>
 
   {/* Right Arrow */}

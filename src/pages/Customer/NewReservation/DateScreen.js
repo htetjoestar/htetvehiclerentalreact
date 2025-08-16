@@ -10,43 +10,58 @@ const DateScreen = () => {
   // Local input states pre-filled with context data (in case of back-navigation)
   const [pick_up_date, setPickupDate] = useState(reservation.pick_up_date || '');
   const [drop_off_date, setDropoffDate] = useState(reservation.drop_off_date || '');
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const scrollRef = useRef(null);
   const [vehicles, setVehicles] = useState([]);
 
       
   const vehicleTypes = ["Sedan", "Truck", "Van", "Sport", "SUV"];
-    const [selectedType, setSelectedTypes] = useState("Sedan");
+  const [selectedType, setSelectedTypes] = useState("Sedan");
 
-      useEffect(() => {
-      axios.get('https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/available/'+selectedType, {
+  useEffect(() => {
+    setLoading(true); // start loading when fetching
+    setError('');
+
+    axios.get(
+      `https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/available/${selectedType}`
+    )
+      .then(response => {
+        setVehicles(response.data);
+        setLoading(false); // stop loading after success
       })
-        .then(response => setVehicles(response.data))
-        .catch(error => console.error("Error fetching vehicles:", error));
-      }, [selectedType]);  
-const scrollLeft = () => {
-  const container = scrollRef.current;
-  if (!container) return;
+      .catch(err => {
+        console.error("Error fetching vehicles:", err);
+        setError("Failed to fetch vehicles.");
+        setLoading(false); // stop loading even if error
+      });
+  }, [selectedType]);
+  
+    const handleQuickReserve = (input) => {
+      // Save to context
+      setReservation(prev => ({
+        ...prev,
+        vehicle: input, // Assuming you want to save the selected vehicle ID
+      }));
 
-  // If at the start, jump to the end
-  if (container.scrollLeft <= 0) {
-    container.scrollTo({
-      left: container.scrollWidth,
-      behavior: 'smooth',
-    });
-  } else {
-    container.scrollBy({ left: -300, behavior: 'smooth' });
-  }
-};
-  const handleQuickReserve = (input) => {
-    // Save to context
-    setReservation(prev => ({
-      ...prev,
-      vehicle: input, // Assuming you want to save the selected vehicle ID
-    }));
+      // Navigate to the next step
+      navigate('/reservation/quick-reserve');
+    };
 
-    // Navigate to the next step
-    navigate('/reservation/quick-reserve');
+
+  const scrollLeft = () => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    // If at the start, jump to the end
+    if (container.scrollLeft <= 0) {
+      container.scrollTo({
+        left: container.scrollWidth,
+        behavior: 'smooth',
+      });
+    } else {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    }
   };
 
 const scrollRight = () => {
@@ -188,15 +203,31 @@ const scrollRight = () => {
 
 
   {/* Scrollable Container */}
-  <div
-    ref={scrollRef}
-    className="flex overflow-x-auto bg-gray-100 bg-opacity-50 space-x-4 px-12 py-4 scroll-smooth snap-x snap-mandatory"
-  >
-    {vehicles.map((veh) => (
 <div
-  key={veh.vehicle_id}
-  className="flex-shrink-0 border border-gray-300 rounded-lg p-4 w-[280px] shadow-sm bg-white snap-start"
+  ref={scrollRef}
+  className="flex overflow-x-auto bg-gray-100 bg-opacity-50 space-x-4 px-12 py-4 scroll-smooth snap-x snap-mandatory min-h-[400px]"
 >
+  {loading ? (
+    <div className="flex space-x-4">
+      {/* Fake skeleton cards while loading */}
+      {[1, 2, 3].map((i) => (
+        <div
+          key={i}
+          className="flex-shrink-0 border border-gray-300 rounded-lg p-4 w-[280px] shadow-sm bg-white snap-start animate-pulse"
+        >
+          <div className="w-full h-40 bg-gray-200 rounded mb-2" />
+          <div className="h-4 bg-gray-200 rounded w-2/3 mb-2" />
+          <div className="h-3 bg-gray-200 rounded w-1/2 mb-4" />
+          <div className="h-6 bg-gray-200 rounded w-1/3" />
+        </div>
+      ))}
+    </div>
+  ) : (
+    vehicles.map((veh) => (
+      <div
+        key={veh.vehicle_id}
+        className="flex-shrink-0 border border-gray-300 rounded-lg p-4 w-[280px] shadow-sm bg-white snap-start"
+      >
   {veh.image_url ? (
     <img
       src={veh.image_url}
@@ -258,7 +289,10 @@ const scrollRight = () => {
     Book Now
   </button>
 </div>
-    ))}
+    ))
+  )}
+    
+      
   </div>
 
   {/* Right Arrow */}
@@ -268,7 +302,9 @@ const scrollRight = () => {
   >
     &#8594;
   </button>
+    
 </div>
+
   </div>
  </div>
   );

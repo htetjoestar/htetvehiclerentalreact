@@ -7,7 +7,7 @@ const AdminLoginPage = () => {
     const navigate = useNavigate();
     const[Id ,setId]=useState([])
     const[user ,setUser]=useState([])
-    
+    const [loading, setLoading] = useState(false);
     const [loginFail, setLoginFail] = useState(false);
     const [state, setState]= useState({
       email: '',
@@ -19,7 +19,7 @@ const AdminLoginPage = () => {
     const handleClick2=(e)=>{
 
         e.preventDefault()
-        
+        setLoading(true);
         fetch("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/employee/login",{
           method:"POST",
           headers:{"Content-Type":"application/json"},
@@ -37,6 +37,7 @@ const AdminLoginPage = () => {
                 navigate("/admin");
             }else{
                 setLoginFail(true);
+                setLoading(false);
             }
         })
         
@@ -69,11 +70,14 @@ const AdminLoginPage = () => {
     <div className="text-center text-sm text-red-500 h-5">
       {loginFail ? "User not found" : "\u2800"}
     </div>
-    <button
-      className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+   <button
+      className={`w-full py-2 rounded transition ${
+        loading ? "bg-blue-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+      } text-white`}
       onClick={handleClick2}
+      disabled={loading}
     >
-      Log in
+      {loading ? "Logging in..." : "Log in"}
     </button>
   </div>
 </div>
