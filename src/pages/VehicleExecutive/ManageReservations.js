@@ -11,13 +11,13 @@ const ManageReservations = () => {
     startDate:'',
     endDate:'',
   });
-const [page, setPage] = useState(0);
-const [totalPages, setTotalPages] = useState(1); // backend sends this
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(1); // backend sends this
 
   const [sortField, setSortField] = useState("reservation_id");
   const [sortOrder, setSortOrder] = useState("desc");
-const pageSize = 10;  
-    const [error, setError] = useState('');
+  const pageSize = 10;  
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const fetchReservations = async (filters, page) => {
@@ -49,10 +49,12 @@ const pageSize = 10;
     // Return formatted string
     return `${hours}:${minutes}:${seconds} ${month}/${day}/${year}`;
   }
+  
 
-useEffect(() => {
-  fetchReservations(filters, page);
-}, [page,sortField, sortOrder]);
+  useEffect(() => {
+    document.title = "Manage Reservations";
+    fetchReservations(filters, page);
+  }, []);
 
 
   const handleSort = (field) => {

@@ -13,6 +13,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "Htet Vehicle Rental";
     setLoading(true); // start loading when fetching
     axios.get("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/vehicle/random", {
     })
@@ -63,7 +64,7 @@ const Home = () => {
     <div>
       <NewHeader />
 
-      <div className=" bg-rental-hero2 bg-cover flex flex-col justify-center items-center">
+      <div className=" bg-rental-hero2 bg-cover flex flex-col justify-center items-center min-h-[720px] 2xl:h-[920px] bg-no-repeat">
 
       <div className="mt-4 ">
         <img src={website_logo} alt="logo" className="h-56 object-contain ml-2" />
@@ -199,12 +200,66 @@ const Home = () => {
   </button>
 </div>
     </div>
-    
+    <section className="bg-white py-16 px-6 md:px-12">
+  <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+    How to Make a Reservation
+  </h2>
+
+  <div className="space-y-12 max-w-5xl mx-auto">
+    {/* Step 1 */}
+    <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+      <img
+        src="/images/create-account.png"
+        alt="Create Account"
+        className="w-32 h-32 object-contain"
+      />
+      <div>
+        <h3 className="text-xl font-semibold mb-2">1. Create an Account & Login</h3>
+        <p className="text-gray-600">
+          Begin by creating your account with just a few details. Once registered, log in to access
+          your personalized dashboard where you can track reservations and manage bookings with ease.
+        </p>
+      </div>
+    </div>
+
+    {/* Step 2 */}
+    <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+      <img
+        src="/images/make-reservation.png"
+        alt="Make Reservation"
+        className="w-32 h-32 object-contain"
+      />
+      <div>
+        <h3 className="text-xl font-semibold mb-2">2. Make a Reservation Online</h3>
+        <p className="text-gray-600">
+          Browse through our fleet of vehicles, compare options, and select the one that best fits
+          your needs. With just a few clicks, secure your reservation and receive instant
+          confirmation.
+        </p>
+      </div>
+    </div>
+
+    {/* Step 3 */}
+    <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+      <img
+        src="/images/pickup-car.png"
+        alt="Pickup Vehicle"
+        className="w-32 h-32 object-contain"
+      />
+      <div>
+        <h3 className="text-xl font-semibold mb-2">3. Pick Up Your Vehicle</h3>
+        <p className="text-gray-600">
+          Head to our rental location at your scheduled time. Our team will have your selected
+          vehicle ready to go, so you can hit the road without delay.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
     <footer className="bg-gray-100 text-center text-sm text-gray-600 py-6 border-t">
       <div className="max-w-screen-lg mx-auto px-4 flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
         <a href="#" className="hover:underline">Careers</a>
         <a href="#" className="hover:underline">FAQs</a>
-        <a href="#" className="hover:underline">How to Use</a>
         <a href="#" className="hover:underline">Privacy Policy</a>
         <a href="#" className="hover:underline">Contact Us</a>
       </div>
@@ -213,6 +268,9 @@ const Home = () => {
         <a href="/admin-login" className="hover:underline">Admin Login</a>
       </div>
       <p className="mt-4">&copy; {new Date().getFullYear()} YourCompany. All rights reserved.</p>
+
+
+
     </footer>
     </div>
   );
