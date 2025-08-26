@@ -134,14 +134,14 @@ const handleProceedToLogin = () => {
     }
   
     try {
-      const response = await axios.post("http://localhost:8080/api/customer", payload);
+      const response = await axios.post("https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer", payload);
         console.log("Customer uploaded:", response.data);
             setUploading(true);
             const imageformData = new FormData();
             imageformData.append("image", imageFile);
 
             try {
-            const response2 = await fetch(`http://localhost:8080/api/customer/${response.data.customer_id}/upload-image`, {
+            const response2 = await fetch(`https://htetvehiclerental-e8g5bqfna0fpcnb3.canadacentral-01.azurewebsites.net/api/customer/${response.data.customer_id}/upload-image`, {
             method: "POST",
             body: imageformData,
             });
@@ -368,7 +368,7 @@ const handleProceedToLogin = () => {
                               ) : (
                                   formData.cust_id_img ? (
                                   <img
-                                        src={'http://localhost:8080' + formData.cust_id_img}
+                                        src={`${formData.cust_id_img}`}
                                         alt="Vehicle"
                                         className="w-80 h-auto rounded border border-gray-300"
                                       />
