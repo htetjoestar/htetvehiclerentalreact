@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# 🚗 Car Rental Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack **car rental platform** built with React and hosted on **Azure App Service**.  
+This project allows users to browse vehicles, make bookings, and manage reservations with an intuitive interface.
 
-## Available Scripts
+🌐 **Live Demo**: [Add your deployed link here](https://www.htetvehiclerental.com)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ Features
+- 🔍 Browse and search available vehicles  
+- 👤 User authentication & profile management  
+- 📅 Booking and reservation system  
+- 👤 Admin portal for vehicle and user management
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
+- **Frontend:** React 18, [Add UI library like TailwindCSS/Material-UI if used]  
+- **Backend/API:** Node.js, Express (if applicable)  
+- **Database:** MySQL
+- **Deployment:** Azure App Service  
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Getting Started
 
-### `npm run build`
+Follow these steps to run the project locally:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+Make sure you have installed:
+- [Node.js](https://nodejs.org/) (v16 or higher recommended)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
+If you would like to run this project locally, here is how you run it.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/car-rental.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Navigate into the project folder:
 
-### `npm run eject`
+cd car-rental
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+##Install dependencies:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Run the development server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm start
 
-## Learn More
+Open your browser at:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    http://localhost:3000
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+###🌍 Deployment
 
-### Code Splitting
+This application is deployed on Azure App Service.
+[Optional: Add a short sentence about how you deployed it, e.g., CI/CD pipeline, GitHub Actions, or manual push.]
+📸 Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+(Add screenshots or a GIF here to showcase your app UI.)
+Example:
+###🤝 Contributing
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributions, issues, and feature requests are welcome!
+Feel free to open a pull request or report a bug.
