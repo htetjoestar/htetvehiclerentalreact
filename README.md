@@ -33,36 +33,37 @@ Make sure you have installed:
 - npm or yarn
 
 ### Installation
-If you would like to run this project locally, here is how you run it.
+
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/car-rental.git
 
-    Navigate into the project folder:
+Navigate into the project folder:
 
 cd car-rental
 
-##Install dependencies:
+Install dependencies:
 
-npm install
+    npm install
 
 Run the development server:
 
-npm start
+    npm start
 
 Open your browser at:
 
     http://localhost:3000
 
-###🌍 Deployment
+### 🌍 Deployment
 
 This application is deployed on Azure App Service.
-[Optional: Add a short sentence about how you deployed it, e.g., CI/CD pipeline, GitHub Actions, or manual push.]
-📸 Screenshots
 
-(Add screenshots or a GIF here to showcase your app UI.)
+### 📸 Screenshots
+![Homepage](screenshots/part1.png)
+
 Example:
-###🤝 Contributing
+### 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 Feel free to open a pull request or report a bug.
